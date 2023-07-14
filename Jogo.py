@@ -225,6 +225,8 @@ def computer_play():
         draw_computer_scissors_button_select()
     return computer_choice
 def check_winner(player1_choice, computer_choice):
+    print("player1_choice: ", player1_choice)
+    print("computer_choice: ", computer_choice)
     if player1_choice == computer_choice:
         return 2 # 2 = empate
     elif player1_choice == 1: # pedra
@@ -244,11 +246,17 @@ def check_winner(player1_choice, computer_choice):
             return 1 # 1 = vitória
 def print_result(result):
     if result == 0:
-        print("Você perdeu!")
+        fonte = pygame.font.SysFont(None, 50)
+        text = fonte.render("Você \n perdeu!", True, RED)
+        menu_screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
     elif result == 1:
-        print("Você venceu!")
+        fonte = pygame.font.SysFont(None, 50)
+        text = fonte.render("Você \n ganhou!", True, BLUE)
+        menu_screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
     else:
-        print("Empate!")
+        fonte = pygame.font.SysFont(None, 50)
+        text = fonte.render("Empate!", True, PURPLE)
+        menu_screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
 # Loop principal
 rodando = True
 
@@ -286,9 +294,10 @@ while rodando:
         draw_paper_button_select()
         computer_choice = computer_play()
         pygame.display.flip()
-        result = check_winner(2, computer_play())
+        result = check_winner(player_choice, computer_choice)
         print (player_choice, computer_choice, result)
         print_result(result)
+        pygame.display.flip()
         sleep(3)
         paper_button_clicked = False
     elif rock_button_clicked:
@@ -297,16 +306,16 @@ while rodando:
         pygame.display.flip()
         sleep(1)
         jokenpo_animation()
-        print("paper")
         draw_title()
         draw_player1()
         draw_computer()
         draw_rock_button_select()
         computer_choice = computer_play()
         pygame.display.flip()
-        result = check_winner(2, computer_play())
+        result = check_winner(player_choice, computer_choice)
         print (player_choice, computer_choice, result)
         print_result(result)
+        pygame.display.flip()
         sleep(3)
         rock_button_clicked = False
     elif scissors_button_clicked:
@@ -322,9 +331,10 @@ while rodando:
         draw_scissors_button_select()
         computer_choice = computer_play()
         pygame.display.flip()
-        result = check_winner(2, computer_play())
+        result = check_winner(player_choice, computer_choice)
         print (player_choice, computer_choice, result)
         print_result(result)
+        pygame.display.flip()
         sleep(3)
         scissors_button_clicked = False
     # Atualização da tela
