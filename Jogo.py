@@ -231,9 +231,9 @@ def check_winner(player1_choice, computer_choice):
         return 2 # 2 = empate
     elif player1_choice == 1: # pedra
         if computer_choice == 2: # papel
-            return 1 # 0 = derrota
+            return 0 # 0 = derrota
         else:
-            return 0 # 1 = vitória
+            return 1 # 1 = vitória
     elif player1_choice == 2: # papel
         if computer_choice == 3: # tesoura
             return 0
@@ -247,15 +247,15 @@ def check_winner(player1_choice, computer_choice):
 def print_result(result):
     if result == 0:
         fonte = pygame.font.SysFont(None, 50)
-        text = fonte.render("Você \n perdeu!", True, RED)
+        text = fonte.render("Loose!", True, RED)
         menu_screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
     elif result == 1:
         fonte = pygame.font.SysFont(None, 50)
-        text = fonte.render("Você \n ganhou!", True, BLUE)
+        text = fonte.render("Win!", True, BLUE)
         menu_screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
     else:
         fonte = pygame.font.SysFont(None, 50)
-        text = fonte.render("Empate!", True, PURPLE)
+        text = fonte.render("Draw!", True, PURPLE)
         menu_screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
 # Loop principal
 rodando = True
